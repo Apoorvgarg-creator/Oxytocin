@@ -40,9 +40,10 @@ webApp.get('/', (req, res) => {
 
 // Route for WhatsApp
 webApp.post('/whatsapp', async (req, res) => {
-  //Whatsapp setup(run)
-  // const messaenger = require('./messenger.js')
-  // await messaenger.messaenger_function(req);
+  console.log(req.body)
+    //Whatsapp setup(run)
+  const messaenger = require('./messenger.js')
+  await messaenger.messaenger_function(req);
 
   //Adding row in shops and a new table for that shop (run)
   // const shop_adder = require('./shop_module.js')
