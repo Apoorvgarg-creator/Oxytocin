@@ -7,8 +7,6 @@ const stringMapFunction = {
     "menu" : "OK, you can use the following dictionary to create, edit and share your shop" +
         ""
 
-
-
 }
 const messaenger_function = async(req)=> {
     const msg = req.body["Body"];
