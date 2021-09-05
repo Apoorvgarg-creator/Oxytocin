@@ -4,45 +4,46 @@
 // make a table named shops with 2 columns id and name
 
 // fill the details in db and run npm start
-const express = require('express');
-const bodyParser = require('body-parser');
-const knex = require('knex')
-require('dotenv').config();
+const express = require("express");
+const bodyParser = require("body-parser");
+const knex = require("knex");
+require("dotenv").config();
 
 const db = knex({
-  client: 'pg',
+  client: "pg",
   connection: {
-    host : 'localhost',
-    user : 'postgres',
-    port: '5432',
-    password : '[your own password]',
-    database : 'shops_database'
-  }
+    host: "localhost",
+    user: "postgres",
+    port: "5432",
+    password: "[your own password]",
+    database: "shops_database",
+  },
 });
 
 // Start the webapp
 const webApp = express();
 
 // Webapp settings
-webApp.use(bodyParser.urlencoded({
-    extended: true
-}));
+webApp.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 webApp.use(bodyParser.json());
 
 // Server Port
 const PORT = process.env.PORT;
 
 // Home route
-webApp.get('/', (req, res) => {
-    res.send(`Hello World.!`);
+webApp.get("/", (req, res) => {
+  res.send(`Hello World.!`);
 });
 
-
 // Route for WhatsApp
-webApp.post('/whatsapp', async (req, res) => {
-  console.log(req.body)
-    //Whatsapp setup(run)
-  const messaenger = require('./messenger.js')
+webApp.post("/whatsapp", async (req, res) => {
+  console.log(req.body["body"]);
+  //Whatsapp setup(run)
+  const messaenger = require("./messenger.js");
   await messaenger.messaenger_function(req);
 
   //Adding row in shops and a new table for that shop (run)
@@ -57,5 +58,5 @@ webApp.post('/whatsapp', async (req, res) => {
 
 // Start the server
 webApp.listen(PORT, () => {
-    console.log(`Server is up and running at ${PORT}`);
+  console.log(`Server is up and running at ${PORT}`);
 });
